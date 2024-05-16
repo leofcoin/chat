@@ -1,10 +1,9 @@
-import { css } from '@vandeurenglenn/lite'
+import { css } from './vanilla-element.js'
 export default css`
-  :host() {
+  :host {
     display: flex;
-    flex-direction: column;
-    position: relative;
-    height: 100%;
-    width: 100%;
+    flex-direction: row;
+    position: absolute;
+    inset: 0;
   }
 `
