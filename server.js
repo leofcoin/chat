@@ -125,6 +125,10 @@ watcher.on('change', () => {
   }, 100)
 })
 
+watcher.on('error', (error) => {
+  console.error(error)
+})
+
 for (const name in interfaces) {
   if (name === 'Wi-Fi' || name === 'en0' || name === 'en1' || name === 'eth0' || name === 'eth1') {
     for (const { family, address, internal } of interfaces[name])

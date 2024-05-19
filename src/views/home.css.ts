@@ -1,4 +1,4 @@
-import { css } from '@vandeurenglenn/lite'
+import { css } from './../vanilla-element.js'
 export default css`
   :host() {
     display: flex;

@@ -6,4 +6,11 @@ export default css`
     position: absolute;
     inset: 0;
   }
+
+  span[slot='drawer-content'] {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
 `

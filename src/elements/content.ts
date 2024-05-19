@@ -7,10 +7,10 @@ export class ChatContent extends VanillaElement {
         display: flex;
         flex-direction: column;
         position: absolute;
-        left: 240px;
+        left: 0;
         bottom: 0;
         right: 0;
-        top: 0;
+        top: 56px;
       }
     `
   ]

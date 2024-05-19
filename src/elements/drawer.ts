@@ -1,6 +1,7 @@
 import { VanillaElement, css, html } from '../vanilla-element.js'
 import './contacts/search.js'
 import './contacts/recent.js'
+import '@vandeurenglenn/lite-elements/icon-button.js'
 
 export class ChatDrawer extends VanillaElement {
   static styles = [
@@ -18,13 +19,22 @@ export class ChatDrawer extends VanillaElement {
         display: flex;
         flex: 1;
       }
+
+      header {
+        width: 100%;
+        display: flex;
+      }
     `
   ]
   render() {
     return html`
+      <header>
+        <span class="flex-one"></span>
+        <custom-icon-button icon="menu_open"></custom-icon-button>
+      </header>
       <search-contacts></search-contacts>
       <recent-contacts></recent-contacts>
-      <span clas="flex-one"></span>
+      <span class="flex-one"></span>
       <a href="#!/settings" data-route="settings">settings</a>
     `
   }

@@ -5,8 +5,7 @@
     "outDir": "./www",
     "moduleResolution": "NodeNext",
     "declaration": false,
-    "types": ["node", "@vandeurenglenn/lite"]
+    "types": ["node"]
   },
-  "include": ["./src/**/*.ts"],
-  "exclude": ["node_modules"]
+  "include": ["src", "node_modules/@vandeurenglenn/lite-elements", "node_modules/@vandeurenglenn/flex-elements"]
 }

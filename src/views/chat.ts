@@ -1,18 +1,15 @@
 import style from './chat.css.js'
 import { VanillaElement, html } from '../vanilla-element.js'
+import { LiteElement, property } from '@vandeurenglenn/lite'
 
-export class ChatView extends VanillaElement {
+export class ChatView extends LiteElement {
   static styles = [style]
 
-  static properties = {
-    selected: {
-      type: 'string'
-    }
-  }
+  @property() accessor contact
 
   render() {
     return html`
-      <h1>chatting with ${this.selected}</h1>
+      <h1>chatting with ${this.contact}</h1>
       <chat-input></chat-input>
     `
   }

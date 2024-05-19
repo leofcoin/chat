@@ -3,7 +3,13 @@ import { VanillaElement, html } from './vanilla-element.js'
 import './elements/content.js'
 import './elements/drawer.js'
 
-export default class ChatShell extends VanillaElement {
+import '@vandeurenglenn/lite-elements/drawer-layout.js'
+import '@vandeurenglenn/lite-elements/theme.js'
+import '@vandeurenglenn/lite-elements/selector.js'
+import '@vandeurenglenn/lite-elements/drawer-item.js'
+import icons from './icons.js'
+
+export class ChatShell extends VanillaElement {
   static styles = [style]
 
   get #content() {
@@ -56,8 +62,24 @@ export default class ChatShell extends VanillaElement {
 
   render() {
     return html`
-      <chat-drawer></chat-drawer>
-      <chat-content></chat-content>
+      <custom-theme load-symbols="false" load-font="false"></custom-theme>
+      ${icons}
+      <custom-drawer-layout>
+        <span slot="drawer-content">
+          <custom-selector
+            attr-for-selected="route"
+            @selected=${({ detail }) => (location.hash = `#!/chat?contact=${detail}`)}>
+            <custom-drawer-item route="eb"> eb</custom-drawer-item>
+            <custom-drawer-item route="bhero"> bhero</custom-drawer-item>
+          </custom-selector>
+
+          <custom-selector attr-for-selected="route" @selected=${({ detail }) => (location.hash = `#!/${detail}`)}>
+            <custom-drawer-item route="settings"> settings</custom-drawer-item>
+          </custom-selector>
+        </span>
+
+        <chat-content></chat-content>
+      </custom-drawer-layout>
     `
   }
 }

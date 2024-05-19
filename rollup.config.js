@@ -1,12 +1,13 @@
 import nodeResolve from '@rollup/plugin-node-resolve'
 import typescript from '@rollup/plugin-typescript'
-import { glob, copyFile, open, unlink } from 'fs/promises'
-
+import { glob, copyFile, open, unlink, cp } from 'fs/promises'
+import materialSymbols from 'rollup-plugin-material-symbols'
 // try {
 //   const fd = await open('./www/index.html')
 //   await fd.close()
 // } catch (error) {
 await copyFile('./src/index.html', './www/index.html')
+await cp('./node_modules/@vandeurenglenn/lite-elements/exports/themes', './www/themes', { recursive: true })
 // }
 const sourceFiles = await glob(['./src/**/*.ts'])
 
@@ -36,6 +37,6 @@ export default [
       format: 'es',
       dir: 'www'
     },
-    plugins: [cleanBuild(), nodeResolve(), typescript()]
+    plugins: [cleanBuild(), nodeResolve(), typescript(), materialSymbols({ placeholderPrefix: 'symbol' })]
   }
 ]

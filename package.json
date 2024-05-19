@@ -21,6 +21,11 @@
     "tslib": "^2.6.2"
   },
   "dependencies": {
+    "@lit/reactive-element": "^2.0.4",
+    "@vandeurenglenn/lite": "^0.2.46",
+    "@vandeurenglenn/lite-elements": "^0.3.41",
+    "lit-html": "^3.1.3",
+    "rollup-plugin-material-symbols": "^2.1.5",
     "websocket": "^1.0.34"
   }
 }
