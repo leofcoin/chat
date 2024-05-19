@@ -7,17 +7,42 @@ import '@vandeurenglenn/lite-elements/theme.js'
 import '@vandeurenglenn/lite-elements/selector.js'
 import '@vandeurenglenn/lite-elements/drawer-item.js'
 import icons from './icons.js'
+import { ChatContent } from './elements/content.js'
+import { ChatView } from './views/chat.js'
 
 export class ChatShell extends VanillaElement {
   static styles = [style]
 
-  get #content() {
+  get #content(): ChatContent {
     return this.shadowRoot.querySelector('chat-content')
   }
+
+  #chatCache = {}
 
   connectedCallback() {
     onhashchange = this.onhashchange
     this.onhashchange()
+  }
+
+  #beforeRouteChange() {
+    const currentChat = this.#content.querySelector('chat-view') as ChatView
+    // whenever we have a chat open already cache the messages etc
+    // todo decide to cache all or only the not send input
+    if (currentChat) {
+      this.#chatCache[currentChat.contact] = currentChat.input
+    }
+  }
+
+  #afterRouteChange(params, tagName) {
+    if (params) {
+      const el = this.#content.querySelector(tagName)
+      for (const [key, value] of Object.entries(params)) {
+        el[key] = value
+      }
+      if (tagName === 'chat-view' && params.contact) {
+        el.input = this.#chatCache[params.contact]
+      }
+    }
   }
 
   onhashchange = async () => {
@@ -46,14 +71,10 @@ export class ChatShell extends VanillaElement {
       const tagName = `${name}-view`
       if (!customElements.get(tagName)) await import(`./${name}.js`)
 
+      await this.#beforeRouteChange()
       this.#content.show(`<${tagName} ></${tagName}>`)
 
-      if (params) {
-        const el = this.#content.querySelector(tagName)
-        for (const [key, value] of Object.entries(params)) {
-          el[key] = value
-        }
-      }
+      await this.#afterRouteChange(params, tagName)
     } else {
       location.hash = 'home'
     }

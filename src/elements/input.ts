@@ -1,3 +1,4 @@
+import { query } from '@vandeurenglenn/lite'
 import { VanillaElement, css, html } from '../vanilla-element.js'
 
 export class ChatInput extends VanillaElement {
@@ -27,6 +28,17 @@ export class ChatInput extends VanillaElement {
       }
     `
   ]
+
+  @query('.chat-content') accessor chatContent
+
+  set input(value) {
+    if (value === undefined) this.chatContent.innerHTML = null
+    else this.chatContent.innerHTML = value
+  }
+
+  get input() {
+    return this.chatContent.innerHTML
+  }
   render() {
     return html`
       <p contenteditable="true" class="chat-content"></p>
