@@ -19,6 +19,10 @@ export class ChatView extends LiteElement {
   get input() {
     return this.chatInput.input
   }
+
+  MessageSent(){
+    console.log("recieved")
+  }
   render() {
     return html`
       <h1>chatting with ${this.contact}</h1>

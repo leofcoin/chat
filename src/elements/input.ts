@@ -31,6 +31,15 @@ export class ChatInput extends VanillaElement {
 
   @query('.chat-content') accessor chatContent
 
+  send() {
+    this.input = ''
+    console.log("sent")
+    document
+        .querySelector('chat-shell')
+        .shadowRoot.querySelector('chat-view')
+        .MessageSent()
+  }
+
   set input(value) {
     if (value === undefined) this.chatContent.innerHTML = null
     else this.chatContent.innerHTML = value
@@ -42,7 +51,7 @@ export class ChatInput extends VanillaElement {
   render() {
     return html`
       <p contenteditable="true" class="chat-content"></p>
-      <custom-icon-button icon="send"></custom-icon-button>
+      <custom-icon-button icon="send" @click=${() => this.send()}></custom-icon-button>
     `
   }
 }
