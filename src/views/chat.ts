@@ -1,7 +1,8 @@
 import style from './chat.css.js'
 import { VanillaElement, html } from '../vanilla-element.js'
 import { LiteElement, property } from '@vandeurenglenn/lite'
-
+import './../elements/input.js'
+import './../elements/messages.js'
 export class ChatView extends LiteElement {
   static styles = [style]
 
@@ -10,6 +11,7 @@ export class ChatView extends LiteElement {
   render() {
     return html`
       <h1>chatting with ${this.contact}</h1>
+      <chat-messages></chat-messages>
       <chat-input></chat-input>
     `
   }

@@ -1,7 +1,6 @@
 import style from './shell.css.js'
 import { VanillaElement, html } from './vanilla-element.js'
 import './elements/content.js'
-import './elements/drawer.js'
 
 import '@vandeurenglenn/lite-elements/drawer-layout.js'
 import '@vandeurenglenn/lite-elements/theme.js'

@@ -5,6 +5,7 @@ export default html`
     <template>
       <span name="menu">@symbol-menu</span>
       <span name="menu_open">@symbol-menu_open</span>
+      <span name="send">@symbol-send</span>
     </template>
   </custom-icon-set>
 `
